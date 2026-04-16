@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block title %}Allocation Result{% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+    <div class="card shadow p-4">
+
+        <h3 class="mb-3">Allocation Result</h3>
+
+        <p class="text-success fw-semibold">
+            ✅ Smart allocation completed successfully
+        </p>
+
+        <h5 class="mt-4">
+            Exam Date: {{ exam.date }}
+        </h5>
+
+        <h5 class="mt-4">
+            {{ exam.session }} Session        
+        </h5>
+
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>Room</th>
+                    <th>Lecturer</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in allocations %}
+                <tr>
+                    <td>{{ row.room.room_number }}</td>
+                    <td>{{ row.lecturer.name }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="2" class="text-center">
+                        No allocations found
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="mt-3 text-center">
+
+            {% if user.is_superuser or lecturer and lecturer.role == 'HOD' %}
+                <a href="{% url 'all_duties' %}" class="btn btn-success px-4 me-2">
+                    Download PDF
+                </a>
+            {% endif %}
+
+            <a href="{% url 'dashboard' %}" class="btn btn-dark px-4">
+                Dashboard
+            </a>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

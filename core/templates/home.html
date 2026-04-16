@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="d-flex flex-column justify-content-center align-items-center text-center" style="min-height: 70vh;">
+
+    <!-- ✅ Title -->
+    <div>
+        <h1 class="fw-bold display-5">Invigilator Allocation System</h1>
+        <p class="text-muted fs-5">Smart, automated and efficient duty management</p>
+    </div>
+
+    <!-- ✅ Features -->
+    <div class="row mt-5 w-100">
+
+        <div class="col-md-4">
+            <div class="card p-4 shadow-sm h-100 text-center border-0">
+                <h4>📊 Smart Allocation</h4>
+                <p class="text-muted mt-2">
+                    Automatically assigns invigilators efficiently.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card p-4 shadow-sm h-100 text-center border-0">
+                <h4>📄 Reports</h4>
+                <p class="text-muted mt-2">
+                    Download duties as PDF instantly.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card p-4 shadow-sm h-100 text-center border-0">
+                <h4>🚫 Absence Handling</h4>
+                <p class="text-muted mt-2">
+                    Manage unavailable lecturers easily.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

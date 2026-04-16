@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block title %}Register{% endblock %}
+
+{% block content %}
+
+<div class="d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+
+  <div class="card p-4 border-0" style="width: 420px; border-radius: 16px;">
+    
+    <h3 class="text-center mb-2 fw-bold">Register</h3>
+    <h5 class="text-center fw-semibold mb-4 text-muted">Create your account</h5>
+
+    <form method="post" autocomplete="off">
+      {% csrf_token %}
+
+      <!-- Username -->
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Username</label>
+        <input type="text" name="username" class="form-control" required autocomplete="off">
+      </div>
+
+      <!-- Password -->
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Password</label>
+
+        <div class="input-group">
+          <input type="password" name="password" id="password" class="form-control" required>
+
+          <button type="button" class="btn btn-outline-secondary" onclick="togglePasswordIcon()">
+            <i id="eyeIcon" class="bi bi-eye"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Name -->
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Name</label>
+        <input type="text" name="name" class="form-control" required>
+      </div>
+
+      <!-- Department -->
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Department</label>
+        <input type="text" name="department" class="form-control" required>
+      </div>
+
+      <!-- Role -->
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Role</label>
+        <select name="role" class="form-control" required>
+          <option value="" selected disabled>-- Select Role --</option>
+          <option value="HOD">HOD</option>
+          <option value="FULL">Full-Time</option>
+          <option value="PART">Part-Time</option>
+        </select>
+      </div>
+
+      <!-- Submit -->
+      <button class="btn btn-primary w-100 fw-semibold">
+        <i class="bi bi-person-plus me-2"></i> Register
+      </button>
+
+    </form>
+
+    <!-- Login Link -->
+    <p class="text-center mt-3 mb-0 text-muted">
+      Already registered? 
+      <a href="{% url 'login' %}" class="text-decoration-none fw-semibold">Login</a>
+    </p>
+
+  </div>
+
+</div>
+
+{% endblock %}

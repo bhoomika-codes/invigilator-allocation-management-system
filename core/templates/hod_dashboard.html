@@ -1,0 +1,176 @@
+{% extends 'base.html' %}
+{% block title %}HOD Dashboard{% endblock %}
+
+{% block content %}
+
+<style>
+/* 🔥 Premium Button Style */
+.btn-premium {
+  border-radius: 10px;
+  padding: 6px 14px;
+  font-weight: 500;
+  transition: all 0.25s ease;
+}
+
+.btn-premium:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+}
+
+/* 🔥 Card Hover */
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+/* 🔥 Chart container FIXED */
+.chart-container {
+  height: 300px;
+}
+</style>
+
+<div class="container-fluid">
+
+  <!-- 🔥 HEADER WITH ACTION BUTTONS -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+
+    <div>
+      <h2 class="fw-bold mb-1">
+        <i class="bi bi-bar-chart-line me-2"></i> HOD Dashboard
+      </h2>
+      <small class="text-muted">Overview of invigilation duties</small>
+    </div>
+
+    <div class="d-flex gap-2">
+      <a href="{% url 'my_duties' %}" class="btn btn-outline-primary btn-sm btn-premium">
+        <i class="bi bi-person-lines-fill me-1"></i> My Duties
+      </a>
+
+      <a href="{% url 'all_duties' %}" class="btn btn-dark btn-sm btn-premium">
+        <i class="bi bi-download me-1"></i> Full Report
+      </a>
+    </div>
+
+  </div>
+
+  <!-- 🔥 SUMMARY CARDS -->
+  <div class="row mb-4">
+
+    <div class="col-md-4">
+      <div class="card p-4 text-center hover-lift">
+        <h6 class="text-muted">Total Rooms</h6>
+        <h2 class="fw-bold text-primary">{{ labels|length }}</h2>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card p-4 text-center hover-lift">
+        <h6 class="text-muted">Total Allocations</h6>
+        <h2 class="fw-bold text-success">{{ total_allocations }}</h2>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card p-4 text-center hover-lift">
+        <h6 class="text-muted">Average per Room</h6>
+        <h2 class="fw-bold text-warning">{{ avg }}</h2>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 🔥 CHART CARD -->
+  <div class="card p-4 hover-lift">
+
+    <h5 class="fw-semibold mb-3">
+      <i class="bi bi-graph-up me-2"></i> Room-wise Allocation
+    </h5>
+
+    <div class="chart-container">
+      <canvas id="myChart"></canvas>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- 🔥 CHART JS -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+const ctx = document.getElementById('myChart').getContext('2d');
+
+// 🎨 Gradient generator
+function createGradient(ctx, chartArea, color1, color2) {
+  const gradient = ctx.createLinearGradient(0, chartArea.bottom, 0, chartArea.top);
+  gradient.addColorStop(0, color1);
+  gradient.addColorStop(1, color2);
+  return gradient;
+}
+
+const chart = new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: {{ labels|safe }},
+    datasets: [{
+      label: 'Allocations',
+      data: {{ data|safe }},
+      borderRadius: 10,
+      borderSkipped: false,
+      backgroundColor: (context) => {
+        const { chart } = context;
+        const { ctx, chartArea } = chart;
+        if (!chartArea) return '#4e73df';
+
+        return createGradient(ctx, chartArea, '#4e73df', '#1cc88a');
+      }
+    }]
+  },
+
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        backgroundColor: '#2c3e50',
+        titleColor: '#fff',
+        bodyColor: '#fff',
+        padding: 10
+      }
+    },
+
+    scales: {
+      x: {
+        grid: { display: false }
+      },
+      y: {
+        beginAtZero: true,
+        ticks: { stepSize: 1 },
+        grid: { color: '#eaeaea' }
+      }
+    },
+
+    // ✨ Animation
+    animation: {
+      duration: 1200,
+      easing: 'easeOutQuart'
+    },
+
+    // 🔥 Hover effect
+    hover: {
+      mode: 'nearest',
+      intersect: true
+    },
+
+    // 🔥 Interaction polish
+    interaction: {
+      mode: 'index',
+      intersect: false
+    }
+  }
+});
+</script>
+
+{% endblock %}
