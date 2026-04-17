@@ -108,32 +108,32 @@ The system uses a relational database with key entities:
 Follow these steps to run the project locally:
 
 **Clone the repository**
-git clone https://github.com/bhoomika-codes/invigilator-allocation-management-system.git
+- git clone https://github.com/bhoomika-codes/invigilator-allocation-management-system.git
 
 **Navigate to project directory**
-cd invigilator-allocation-management-system
+- cd invigilator-allocation-management-system
 
 **Create virtual environment (optional but recommended)**
-python -m venv venv
+- python -m venv venv
 
 **Activate virtual environment**
-venv\Scripts\activate   # On Windows
-source venv/bin/activate  # On Mac/Linux
+- venv\Scripts\activate   # On Windows
+- source venv/bin/activate  # On Mac/Linux
 
 **Install dependencies**
-pip install -r requirements.txt
+- pip install -r requirements.txt
 
 **Apply migrations**
-python manage.py migrate
+- python manage.py migrate
 
 **Run the development server**
-python manage.py runserver
+- python manage.py runserver
 
 ## 👩‍💻 Author
 
 **Bhoomika**  
 - GitHub: https://github.com/bhoomika-codes  
-- LinkedIn: *(Add your LinkedIn profile link here)*  
+- LinkedIn: https://www.linkedin.com/in/b-bhoomika/ 
 
 ---
 
