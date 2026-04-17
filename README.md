@@ -92,14 +92,31 @@ The system uses a relational database with key entities:
 
 ---
 
-## 📷 Screenshots
-
-> *(Add screenshots here for better visualization)*  
 - Login Page  
 - Faculty Dashboard  
 - HOD Dashboard  
 - Allocation Results  
-- PDF Reports  
+- PDF Reports
+## 📷 Screenshots
+
+### 👨‍🏫 Admin Panel
+![Dashboard](screenshots/admin.png)
+
+### 🔐 Login & Register Page
+![Login Page](screenshots/login.png)
+![Register Page](screenshots/register.png)
+
+### 👨‍🏫 Faculty Dashboard
+![Dashboard](screenshots/Faculty_Dashboard.png)
+
+### 👨‍🏫 HOD Dashboard
+![Dashboard](screenshots/HOD_Dashboard.png)
+
+### ⚙️ Allocation Results
+![Allocation](screenshots/allocation.png)
+
+### 📄 PDF Report
+![Report](screenshots/report.png)
 
 ---
 
